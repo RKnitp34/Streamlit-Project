@@ -1,0 +1,179 @@
+{
+    "snippets" : [
+        {
+            "name" : "example",
+            "code" : [
+                "# This is an example snippet!",
+                "# To create your own, add a new snippet block to the",
+                "# snippets.json file in your jupyter nbextensions directory:",
+                "# /nbextensions/snippets/snippets.json",
+                "import this"
+            ]
+        } , 
+        {
+            "name":"Basic Lib" ,
+            "code":[
+                "import numpy as np" ,
+                "import pandas as pd",
+                "import seaborn as sns" ,
+                "import plotly.express as px" ,
+                "import matplotlib.pyplot as plt" ,
+                "import warnings" ,
+                "warnings.filterwarnings('ignore')",
+                "print('Libraries imported')"
+                
+
+            ]
+        } ,
+        {
+            "name":"Anamolies" ,
+            "code":[
+                "print(df.isna().sum().sort_values(ascending = False))" ,
+                "print('duplicate values in df' ,df.duplicated().sum() )" ,
+                
+                "print('duplicates dropped')"
+
+
+                
+            ]
+        } ,
+
+        {
+            "name":"Font Style" ,
+            "code":[
+                "# create fontdicts for formatting figure text" ,
+                "axtitle_dict = {'family': 'serif','color':  'darkred','weight': 'bold','size': 16}" ,
+                "axlab_dict = {'family': 'serif', 'color': 'black','size': 14}" 
+
+            ]
+        } ,
+
+        {
+            "name":"Distplot" ,
+            "code":[
+                "col = input() " ,
+                "ax0 = sns.distplot(df[col],  color='dodgerblue')" ,
+                "ax0.axvline(df[col].quantile(q=0.25),color='green',linestyle='--',label='25% Quartile')" ,
+                "ax0.axvline(df[col].mean(),color='red',linestyle='--',label='Mean')" ,
+                "ax0.axvline(df[col].median(),color='black',linestyle='--',label='Median')" ,
+                "ax0.axvline(df[col].quantile(q=0.75),color='blue',linestyle='--',label='75% Quartile')" ,
+                "# ax0.text('skewness: {}' .format(str(round(df[col].skew(),3))), ha='right', va='center', size=11)" ,
+                "ax0.set_xlabel(f'{col} [yrs]', fontdict=axlab_dict)" ,
+                "ax0.set_title(f'{col.upper()}    skewness {round(df[col].skew(),3)}', fontdict=axtitle_dict)" ,
+                "ax0.legend(fontsize=10)"
+            ]
+        } ,
+
+        {
+            "name":"Barplot_2_cat" ,
+            "code":[
+                "columns = input()" ,
+                "input = np.unique(df[columns] , return_counts = True)", 
+                "col= 'input'" ,
+                "ax1 =sns.barplot(x=list(eval(f'{col}[0]')), y=list(eval(f'{col}[1]')))" ,
+                "ax1.text(0.2, 120, '{}%' .format(str(round(eval(f'{col}[1][0]')/sum(eval(f'{col}[1]'))*100,1))), ha='right', va='center', size=13, fontdict={'weight': 'bold'})",
+                "ax1.text(1.2, 120, '{}%' .format(str(round(eval(f'{col}[1][1]')/sum(eval(f'{col}[1]'))*100,1))), ha='right', va='center', size=13, fontdict={'weight': 'bold'})",
+                "ax1.set_title(f'{col}', fontdict=axtitle_dict)",
+                "ax1.set_xlabel(f'{col}', fontdict=axlab_dict)",
+                "ax1.set_ylabel('Count', fontdict=axlab_dict)",
+                "ax1.bar_label(ax1.containers[0])",
+                "plt.show()" ,
+                "#for showing percentage top of the bar we can increase 120" 
+
+            ]
+        },
+
+        {
+            "name":"Barplot_Cat" , 
+            "code":[
+                "for columns in list_of_categ:" , 
+                    "\tinput = np.unique(df[columns] , return_counts = True)",
+                    "\tcol= 'input'",
+                    "\tax1 =sns.barplot(x=list(eval(f'{col}[0]')), y=list(eval(f'{col}[1]')))",
+                    "\tfor i in range(len(eval(f'{col}{[1]}'))):",
+                        "\t\tax1.text(0.3+ i, 100, '{}%' .format(str(round(eval(f'{col}{[1]}{[i]}')/sum(eval(f'{col}[1]'))*100,1))), ha='right', va='center', size=13, fontdict={'weight': 'bold'})",
+                    "# ax1.text(1.2, 120, '{}%' .format(str(round(eval(f'{col}[1][1]')/sum(eval(f'{col}[1]'))*100,1))), ha='right', va='center', size=13, fontdict={'weight': 'bold'})",
+                    "\tax1.set_title(f'{columns}', fontdict=axtitle_dict)" , 
+                    "\tax1.set_xlabel(f'{columns}', fontdict=axlab_dict)" ,
+                    "\tax1.set_ylabel('Count', fontdict=axlab_dict)" ,
+                    "\tax1.bar_label(ax1.containers[0])" ,
+                    "\tplt.show()" ,
+            "#for showing percentage top of the bar we can increase 120"
+            ]
+        },
+
+        {
+            "name":"Scatter Plot" , 
+            "code":[
+            "fig1 = plt.figure(figsize=[9,6]);" , 
+            "ax0 = sns.scatterplot(data=df, x =input1, y = input2, hue= input3);" , 
+            "plt.xlabel('Age [yrs]', fontsize='14', fontweight='bold');" , 
+            "plt.ylabel('Charges [$USD]', fontsize='14', fontweight='bold');" , 
+            "plt.title('Relationship of input1 to input2 to input3', fontsize='16', fontweight='bold');" , 
+            "plt.legend(fontsize=14);" , 
+            "plt.xticks(fontsize=14);" , 
+            "plt.yticks(fontsize=14);"]
+        } ,
+
+        {
+            "name":"Count Plot" ,
+            "code":["fig1 = plt.figure(figsize=[9,6]);" , 
+            "ax0 = sns.countplot(data=df, x = input1, hue = input2);" , 
+            "plt.xlabel('Region', fontsize='14', fontweight='bold');" , 
+            "plt.ylabel('Count', fontsize='14', fontweight='bold');" , 
+            "plt.title('Count of........ and .......... by input1', fontsize='16', fontweight='bold');" ,
+            "plt.legend(fontsize=14);"  ,
+            "plt.xticks(fontsize=14);"  ,
+            "plt.yticks(fontsize=14);"  ]
+        } ,
+
+        {
+            "name":"BoxPlot" ,
+            "code":["fig1 = plt.figure(figsize=[9,6]);", 
+            "ax0 = sns.boxplot(data = df, y = 'sex', x = 'bmi' );", 
+            "plt.ylabel('input', fontsize='14', fontweight='bold');", 
+            "plt.xlabel('input', fontsize='14', fontweight='bold');", 
+            "plt.title('x by y', fontsize='16', fontweight='bold');", 
+            "plt.xticks(fontsize=14);" , 
+            "plt.yticks(fontsize=14);"]
+        },
+
+        {
+            "name":"Subplots n x n" ,
+            "code":[
+                "#create figure with 3 x 3 grid of subplots",
+                "fig = plt.figure(figsize=[16,12])" ,
+                "fig.suptitle('SPREAD OF dATA', fontsize=18, fontweight='bold')" ,
+                "fig.subplots_adjust(top=0.92);" ,
+                "fig.subplots_adjust(hspace=0.5, wspace=0.4);" ,
+
+
+
+                "for i ,col in enumerate(list_of_columns):" ,
+                    "\ta = fig.add_subplot(2, 2, i+1)" ,
+                    "\t#a=sns.distplot(df[col ], ax=a, color='dodgerblue')" ,
+                    "\t#a=sns.countplot(x = df[col] , ax=a)" ,
+                    
+                    "\t#a.bar_label(a.containers[0])" ,
+                    "\ta.set_title(col , fontdict=axtitle_dict)",
+                    "\ta.set_xlabel('Age [yrs]', fontdict=axlab_dict)" ,
+                    "\ta.legend(fontsize=10)" 
+            ]
+        },
+        {
+            "name":"Heatmap" ,
+            "code":[
+                "# plot correlation matrix heatmap" ,
+                "fig, ax = plt.subplots(figsize=[13,5])" , 
+                "sns.heatmap(dum_df.corr(), ax=ax,  annot=True, linewidths=0.05, fmt= '.2f',cmap='RdBu')" ,
+                "ax.tick_params(axis='both', which='major', labelsize=14)" ,
+                "ax.set_title('Dataset Correlation Matrix', fontdict=axtitle_dict)" ,
+                "fig.show()"
+            ]
+        }
+
+
+
+
+    ]
+}
